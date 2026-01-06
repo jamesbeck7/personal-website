@@ -1,0 +1,60 @@
+---
+import Layout from 'src/layouts/Layout.astro'
+import ProfileHeader from 'src/components/ProfileHeader.astro'
+import Socials from 'src/components/Socials.astro'
+import Footer from 'src/components/Footer.astro'
+import { getCollection } from 'astro:content'
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
+---
+
+<Layout title="James Beck" description="Personal website and blog">
+  <Fragment slot="head">
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="James Beck's Blog"
+      href="/rss.xml"
+    />
+  </Fragment>
+
+  <main class="container">
+    <ProfileHeader />
+
+    <div class="section">
+      <p class="section-title">About</p>
+      <p>
+        Welcome to my personal corner of the internet. I write about technology,
+        software development, and things I find interesting.
+      </p>
+    </div>
+
+    {
+      articles.length > 0 && (
+        <div class="section">
+          <p class="section-title">Recent Posts</p>
+          <div class="blog-feed">
+            {articles.slice(0, 3).map((article) => (
+              <a href={`/blog/${article.id.replace(/\.md$/, '')}`} class="blog-card">
+                <h3>{article.data.title}</h3>
+                <p class="blog-meta">
+                  {new Intl.DateTimeFormat('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  }).format(article.data.date)}
+                </p>
+              </a>
+            ))}
+          </div>
+          <a href="/blog" class="cta-link">View all posts &rarr;</a>
+        </div>
+      )
+    }
+
+    <Socials />
+    <Footer />
+  </main>
+</Layout>

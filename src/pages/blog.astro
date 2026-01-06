@@ -1,0 +1,45 @@
+---
+import Layout from 'src/layouts/Layout.astro'
+import ProfileHeader from 'src/components/ProfileHeader.astro'
+import Footer from 'src/components/Footer.astro'
+import { getCollection } from 'astro:content'
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
+---
+
+<Layout title="Blog - James Beck" description="Thoughts and writings on technology and more.">
+  <main class="container">
+    <ProfileHeader />
+
+    <div class="section">
+      <p class="section-title">Blog</p>
+
+      {
+        articles.length === 0 ? (
+          <p>No posts yet. Check back soon!</p>
+        ) : (
+          <div class="blog-feed">
+            {articles.map((article) => (
+              <a href={`/blog/${article.id.replace(/\.md$/, '')}`} class="blog-card">
+                <h3>{article.data.title}</h3>
+                <p class="blog-description">{article.data.description}</p>
+                <p class="blog-meta">
+                  {new Intl.DateTimeFormat('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  }).format(article.data.date)}
+                </p>
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <a href="/" class="cta-link">&larr; Home</a>
+    <Footer />
+  </main>
+</Layout>

@@ -1,0 +1,28 @@
+---
+const isHome = Astro.url.pathname === '/'
+---
+
+<div class="profile-header">
+  {
+    isHome ? (
+      <img
+        src="https://pbs.twimg.com/profile_images/1904861743207129088/VeMdEbCZ_400x400.jpg"
+        alt="James Beck"
+        width="76"
+        height="76"
+      />
+    ) : (
+      <a href="/">
+        <img
+          src="https://pbs.twimg.com/profile_images/1904861743207129088/VeMdEbCZ_400x400.jpg"
+          alt="James Beck"
+          width="76"
+          height="76"
+        />
+      </a>
+    )
+  }
+  <div class="profile-header-text">
+    <p class="profile-header-name">James Beck</p>
+  </div>
+</div>

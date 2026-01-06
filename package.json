@@ -1,0 +1,19 @@
+{
+  "name": "james-beck-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.16.6",
+    "@astrojs/rss": "^4.0.14"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1"
+  }
+}

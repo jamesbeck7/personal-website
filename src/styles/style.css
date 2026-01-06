@@ -114,6 +114,38 @@ a:hover {
   margin: 0;
 }
 
+/* Page Navigation */
+.page-nav {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-nav-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.page-nav-link:hover {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* Intro Bio */
+.intro-bio {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: 4rem;
+  color: var(--color-text);
+}
+
 /* Sections */
 .section {
   margin-bottom: 4rem;
@@ -325,6 +357,29 @@ a:hover {
   font-size: 0.9375rem;
   color: var(--color-text-secondary);
   margin: 0;
+}
+
+/* Music Embeds */
+.music-embed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.music-embed {
+  width: 100%;
+}
+
+.music-embed-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--color-text);
+}
+
+.music-embed iframe {
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
 }
 
 /* Footer */

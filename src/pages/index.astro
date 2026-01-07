@@ -3,11 +3,6 @@ import Layout from 'src/layouts/Layout.astro'
 import ProfileHeader from 'src/components/ProfileHeader.astro'
 import Socials from 'src/components/Socials.astro'
 import Footer from 'src/components/Footer.astro'
-import { getCollection } from 'astro:content'
-
-const articles = (await getCollection('articles')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-)
 ---
 
 <Layout title="James Beck" description="Personal website and blog">
@@ -24,104 +19,14 @@ const articles = (await getCollection('articles')).sort(
     <ProfileHeader />
 
     <nav class="page-nav">
-      <a href="#bio" class="page-nav-link">Bio</a>
-      <a href="#writing" class="page-nav-link">Writing</a>
-      <a href="#music" class="page-nav-link">Music</a>
+      <a href="/bio" class="page-nav-link">Bio</a>
+      <a href="/writing" class="page-nav-link">Writing</a>
+      <a href="/music" class="page-nav-link">Music</a>
     </nav>
 
     <p class="intro-bio">
-      James Beck is a Brooklyn-based writer, technologist, and music producer working on consumer blockchain applications.
+      James Beck is a Brooklyn-based <a href="/writing" class="circle-link">writer</a>, technologist, and <a href="/music" class="circle-link">music producer</a> working on consumer blockchain applications.
     </p>
-
-    <div class="section" id="bio">
-      <p class="section-title">Bio</p>
-      <p>
-        James Beck is a Brooklyn-based writer, technologist, and music producer working on consumer blockchain applications. As Head of Growth at ENS Labs, mission is to increase brand awareness and drive integrations of ENS's decentralized identity protocol. Since 2017, James has been immersed in the Ethereum ecosystem, previously leading content and communications at Consensys, where he played a key role in go-to-market strategies for MetaMask and Linea. He's also brought his expertise to Mirror and Avara, focusing on consumer-driven growth in web3.
-      </p>
-      <p>
-        James specializes in translating the complexities of crypto for traditional fintech, governments, and academia—bridging worlds to drive mainstream understanding and adoption. Before diving into web3, he worked on Track 1.5 dialogues between the U.S. and Chinese governments on critical policy issues.
-      </p>
-    </div>
-
-    {
-      articles.length > 0 && (
-        <div class="section" id="writing">
-          <p class="section-title">Writing</p>
-          <div class="blog-feed">
-            {articles.map((article) => (
-              <a href={`/blog/${article.id.replace(/\.md$/, '')}`} class="blog-card">
-                {article.data.featuredImage && (
-                  <img
-                    src={article.data.featuredImage}
-                    alt={article.data.title}
-                    class="blog-card-image"
-                  />
-                )}
-                <div class="blog-card-content">
-                  <h3>{article.data.title}</h3>
-                  <p class="blog-meta">
-                    {new Intl.DateTimeFormat('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                      year: 'numeric',
-                    }).format(article.data.date)}
-                  </p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      )
-    }
-
-    <div class="section" id="music">
-      <p class="section-title">Music</p>
-
-      <div class="music-embed-container">
-        <div class="music-embed">
-          <h3 class="music-embed-title">SoundCloud</h3>
-          <iframe
-            width="100%"
-            height="450"
-            scrolling="no"
-            frameborder="no"
-            allow="autoplay"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/simulacra7&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
-          </iframe>
-        </div>
-
-        <div class="music-embed">
-          <h3 class="music-embed-title">Hermit Thrush (Nina Protocol)</h3>
-          <iframe
-            src="https://www.ninaprotocol.com/releases/simulacra-hermit-thrush"
-            width="100%"
-            height="600"
-            frameborder="0"
-            allow="autoplay">
-          </iframe>
-        </div>
-
-        <div class="music-embed">
-          <h3 class="music-embed-title">Harmless Thrash (Catalog)</h3>
-          <iframe
-            src="https://legacy.catalog.works/simulacra/harmless-thrash"
-            width="100%"
-            height="500"
-            frameborder="0"
-            allow="autoplay">
-          </iframe>
-        </div>
-
-        <div class="music-embed">
-          <h3 class="music-embed-title">Bandcamp</h3>
-          <iframe
-            style="border: 0; width: 100%; height: 600px;"
-            src="https://bandcamp.com/EmbeddedPlayer/album=1234567890/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
-            seamless>
-          </iframe>
-        </div>
-      </div>
-    </div>
 
     <Socials />
     <Footer />

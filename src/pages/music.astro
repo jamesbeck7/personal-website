@@ -1,0 +1,68 @@
+---
+import Layout from 'src/layouts/Layout.astro'
+import ProfileHeader from 'src/components/ProfileHeader.astro'
+import Footer from 'src/components/Footer.astro'
+---
+
+<Layout title="Music - James Beck" description="Music productions by James Beck / Simulacra">
+  <main class="container">
+    <ProfileHeader />
+
+    <nav class="page-nav">
+      <a href="/" class="page-nav-link">Home</a>
+      <a href="/bio" class="page-nav-link">Bio</a>
+      <a href="/writing" class="page-nav-link">Writing</a>
+    </nav>
+
+    <div class="section">
+      <p class="section-title">Music</p>
+
+      <div class="music-embed-container">
+        <div class="music-embed">
+          <h3 class="music-embed-title">SoundCloud</h3>
+          <iframe
+            width="100%"
+            height="450"
+            scrolling="no"
+            frameborder="no"
+            allow="autoplay"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/simulacra7&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+          </iframe>
+        </div>
+
+        <div class="music-embed">
+          <h3 class="music-embed-title">Hermit Thrush (Nina Protocol)</h3>
+          <iframe
+            src="https://www.ninaprotocol.com/releases/simulacra-hermit-thrush"
+            width="100%"
+            height="600"
+            frameborder="0"
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <div class="music-embed">
+          <h3 class="music-embed-title">Harmless Thrash (Catalog)</h3>
+          <iframe
+            src="https://legacy.catalog.works/simulacra/harmless-thrash"
+            width="100%"
+            height="500"
+            frameborder="0"
+            allow="autoplay">
+          </iframe>
+        </div>
+
+        <div class="music-embed">
+          <h3 class="music-embed-title">Bandcamp</h3>
+          <iframe
+            style="border: 0; width: 100%; height: 600px;"
+            src="https://bandcamp.com/EmbeddedPlayer/album=1234567890/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
+            seamless>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </main>
+</Layout>

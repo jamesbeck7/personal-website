@@ -276,6 +276,15 @@ a:hover {
   color: var(--color-text-secondary);
 }
 
+/* Article Featured Image */
+.article-featured-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
 /* Article Content */
 .article-content {
   font-size: 1.0625rem;

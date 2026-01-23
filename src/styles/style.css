@@ -81,7 +81,7 @@ body::after {
 }
 
 body.mouse-active::before {
-  opacity: 0.15;
+  opacity: 0.5;
 }
 
 /* Hide effect on mobile/touch devices */

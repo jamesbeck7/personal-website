@@ -115,13 +115,13 @@ a:hover {
   margin: 0;
 }
 
-/* Page Navigation */
+/* Page Navigation - Tab Style */
 .page-nav {
   display: flex;
   gap: 2rem;
   margin-bottom: 3rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0;
+  border-bottom: 2px solid var(--color-border);
 }
 
 .page-nav-link {
@@ -131,12 +131,30 @@ a:hover {
   letter-spacing: 0.05em;
   color: var(--color-text-secondary);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  padding: 1rem 0.5rem;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  position: relative;
 }
 
 .page-nav-link:hover {
   color: var(--color-accent);
   text-decoration: none;
+}
+
+.page-nav-link.active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
 }
 
 /* Intro Bio */
@@ -398,37 +416,22 @@ footer small {
 /* Clickable Circles for Bio */
 .circle-link {
   position: relative;
-  display: inline;
+  display: inline-block;
   text-decoration: none;
   color: inherit;
-  padding: 2px 4px;
+  padding: 4px 12px;
+  border: 2px solid var(--color-accent);
   border-radius: 50px;
   transition: all 0.3s ease;
+  margin: 0 2px;
 }
 
 .circle-link:hover {
   background-color: var(--color-accent);
   color: var(--color-bg);
   text-decoration: none;
-  box-shadow: 0 2px 8px rgba(88, 166, 255, 0.3);
-}
-
-.circle-link::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: calc(100% + 16px);
-  height: calc(100% + 16px);
-  border: 2px solid var(--color-accent);
-  border-radius: 50px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.circle-link:hover::before {
-  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 2px 12px rgba(88, 166, 255, 0.4);
 }
 
 /* Responsive */

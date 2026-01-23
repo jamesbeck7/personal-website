@@ -21,5 +21,51 @@ const { title, description, image, article } = Astro.props
   </head>
   <body class={article ? 'article' : ''}>
     <slot />
+    <script>
+      // Mouse-reveal cloud background effect
+      (function() {
+        // Only run on devices with hover capability (not touch devices)
+        if (window.matchMedia('(hover: hover)').matches) {
+          let mouseX = 0;
+          let mouseY = 0;
+          let currentX = 0;
+          let currentY = 0;
+          let isActive = false;
+
+          // Smooth animation using requestAnimationFrame
+          function animate() {
+            // Lerp (linear interpolation) for smooth following
+            const ease = 0.1;
+            currentX += (mouseX - currentX) * ease;
+            currentY += (mouseY - currentY) * ease;
+
+            document.body.style.setProperty('--mouse-x', `${currentX}px`);
+            document.body.style.setProperty('--mouse-y', `${currentY}px`);
+
+            requestAnimationFrame(animate);
+          }
+
+          // Track mouse movement
+          document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            if (!isActive) {
+              isActive = true;
+              document.body.classList.add('mouse-active');
+            }
+          });
+
+          // Remove effect when mouse leaves
+          document.addEventListener('mouseleave', () => {
+            isActive = false;
+            document.body.classList.remove('mouse-active');
+          });
+
+          // Start animation loop
+          animate();
+        }
+      })();
+    </script>
   </body>
 </html>

@@ -3,6 +3,7 @@ title: Five Constants for ENS in 2026
 description: Instead of attempting to sell a narrative about what ENS might become in 2026, this essay names a few constants that are already in motion.
 tags: [web3, ens, blockchain, identity]
 date: 2026-01-02
+featuredImage: /images/blog/five-constants-ens-2026.png
 ---
 
 I do like reading new year predictions. They are a comforting genre. Predictions suggest that the future can be shaped by imagination, ready to be pointed in a direction by those confident enough to narrate it, or with the institutional credibility to make it so.

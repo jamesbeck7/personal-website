@@ -21,16 +21,32 @@ const { title, description, image, article } = Astro.props
   </head>
   <body class={article ? 'article' : ''}>
     <slot />
+    <canvas id="reveal-canvas"></canvas>
     <script>
-      // Mouse-reveal cloud background effect
+      // Persistent mouse-reveal cloud background effect
       (function() {
         // Only run on devices with hover capability (not touch devices)
         if (window.matchMedia('(hover: hover)').matches) {
+          const canvas = document.getElementById('reveal-canvas');
+          const ctx = canvas.getContext('2d');
+
           let mouseX = 0;
           let mouseY = 0;
           let currentX = 0;
           let currentY = 0;
           let isActive = false;
+
+          // Set canvas size to match viewport
+          function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Fill canvas with solid color to hide clouds initially
+            ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--color-bg');
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+          }
+
+          resizeCanvas();
+          window.addEventListener('resize', resizeCanvas);
 
           // Smooth animation using requestAnimationFrame
           function animate() {
@@ -39,8 +55,15 @@ const { title, description, image, article } = Astro.props
             currentX += (mouseX - currentX) * ease;
             currentY += (mouseY - currentY) * ease;
 
-            document.body.style.setProperty('--mouse-x', `${currentX}px`);
-            document.body.style.setProperty('--mouse-y', `${currentY}px`);
+            if (isActive) {
+              // Use destination-out to create transparent holes (revealing clouds beneath)
+              ctx.globalCompositeOperation = 'destination-out';
+              ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; // 0.5 alpha for smooth gradual reveal
+              ctx.beginPath();
+              ctx.arc(currentX, currentY, 150, 0, Math.PI * 2); // 300px diameter (150px radius)
+              ctx.fill();
+              ctx.globalCompositeOperation = 'source-over';
+            }
 
             requestAnimationFrame(animate);
           }

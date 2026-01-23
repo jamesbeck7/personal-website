@@ -45,7 +45,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Mouse-reveal cloud background */
+/* Persistent mouse-reveal cloud background */
 body::before {
   content: '';
   position: fixed;
@@ -57,37 +57,25 @@ body::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  z-index: -2;
+  opacity: 0.5;
   pointer-events: none;
 }
 
-body::after {
-  content: '';
+#reveal-canvas {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(
-    circle 300px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    transparent 0%,
-    var(--color-bg) 100%
-  );
   z-index: -1;
   pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-body.mouse-active::before {
-  opacity: 0.5;
 }
 
 /* Hide effect on mobile/touch devices */
 @media (hover: none) {
   body::before,
-  body::after {
+  #reveal-canvas {
     display: none;
   }
 }

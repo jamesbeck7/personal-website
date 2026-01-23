@@ -37,6 +37,13 @@ const { Content } = await render(article)
             }).format(article.data.date)
           }
         </p>
+        {article.data.featuredImage && (
+          <img
+            src={article.data.featuredImage}
+            alt={article.data.title}
+            class="article-featured-image"
+          />
+        )}
       </header>
 
       <div class="article-content">
@@ -54,11 +61,10 @@ const { Content } = await render(article)
       <div>
         <p class="post-end-name">James Beck</p>
         <p class="post-end-cta">
-          Thanks for reading! Follow me on <a
-            href="https://twitter.com/jamesbeck"
+          Thank you for reading. You have a good attention span. For shorter takes, follow me on <a
+            href="https://x.com/JamesJohnBeck"
             target="_blank"
-            rel="noopener">Twitter</a
-          > for more.
+            rel="noopener">Twitter</a>.
         </p>
       </div>
     </div>
